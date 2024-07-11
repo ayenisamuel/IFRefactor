@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AcemStudios.ApiRefactor.DTOs
+namespace AcmeStudios.Core.Module.Studio.Dtos
 {
     public class GetStudioItemHeaderDto
     {

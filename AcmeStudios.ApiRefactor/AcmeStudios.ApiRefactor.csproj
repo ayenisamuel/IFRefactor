@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0-windows</TargetFramework>
@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AcmeStudios.Core\AcmeStudios.Core.csproj" />
+    <ProjectReference Include="..\AcmeStudios.Utilities\AcmeStudios.Utilities.csproj" />
   </ItemGroup>
 
 

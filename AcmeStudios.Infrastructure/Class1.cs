@@ -1,4 +1,4 @@
-﻿namespace AcmeStudios.Core
+﻿namespace AcmeStudios.Infrastructure
 {
     public class Class1
     {

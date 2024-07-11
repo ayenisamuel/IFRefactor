@@ -1,4 +1,6 @@
-﻿using AcemStudios.ApiRefactor.DTOs;
+﻿using AcmeStudios.Core.Module.Studio.Dtos;
+using AcmeStudios.Core.Module.Studio.Interface;
+using AcmeStudios.Models.Domain.StudioItems;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -8,57 +10,58 @@ namespace AcemStudios.ApiRefactor.Controllers
     [ApiController]
     public class AnController : ControllerBase
     {
-        public AnController()
+        private readonly IStudioService _studioService;
+        public AnController(IStudioService studioService)
         {
-
+            _studioService = studioService;
         }
 
         [HttpGet("GetAll")]
         public async Task<IActionResult> Get()
         {
-            InterfaceWithDatabase _iwd = new InterfaceWithDatabase();
+            var response = await _studioService.GetAllStudioHeaderItems();
 
-            return Ok(await _iwd.GetAllStudioHeaderItems());
+            return Ok(response);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            InterfaceWithDatabase _iwd = new InterfaceWithDatabase();
+            var response = await _studioService.GetStudioItemById(id);
 
-            return Ok(await _iwd.GetStudioItemById(id));
+            return Ok(response);
         }
 
         [HttpPost]
         public async Task<IActionResult> Add(AddStudioItemDto studioItem)
         {
-            InterfaceWithDatabase _iwd = new InterfaceWithDatabase();
+            var response = await _studioService.AddStudioItem(studioItem);
 
-            return Ok(await _iwd.AddStudioItem(studioItem));
+            return Ok(response);
         }
 
         [HttpPut]
         public async Task<IActionResult> Update(UpdateStudioItemDto studioItem)
         {
-            InterfaceWithDatabase _iwd = new InterfaceWithDatabase();
+            var response = await _studioService.UpdateStudioItem(studioItem);
 
-            return Ok(await _iwd.UpdateStudioItem(studioItem));
+            return Ok(response);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            InterfaceWithDatabase _iwd = new InterfaceWithDatabase();
+            var response = await _studioService.DeleteStudioItem(id);
 
-            return Ok(await _iwd.DeleteStudioItem(id));
+            return Ok(response);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetStudioItemTypes()
         {
-            InterfaceWithDatabase _iwd = new InterfaceWithDatabase();
+            var response = await _studioService.GetAllStudioItemTypes();
 
-            return Ok(await _iwd.GetAllStudioItemTypes());
+            return Ok(response);
         }
     }
 }

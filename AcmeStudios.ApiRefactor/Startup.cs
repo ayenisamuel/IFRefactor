@@ -4,6 +4,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AutoMapper;
+using AcmeStudios.Core;
+using Microsoft.EntityFrameworkCore;
+using AcmeStudios.Models.Data;
+using AcmeStudios.Utilities;
 
 namespace AcemStudios.ApiRefactor
 {
@@ -27,11 +31,15 @@ namespace AcemStudios.ApiRefactor
                  );
              });
 
-            services.AddControllers();
+            services.AddControllers( options => {
+                options.Filters.Add(typeof(ExceptionFilters));
+                options.Filters.Add(typeof(ModelValidation));
+            });
+            AppBootstrapper.InitServices(services);
+            services.AddDbContext<Cont>(
+                options => options.UseSqlServer("name=ConnectionStrings:StudioConnection"));
 
             services.AddSwaggerGen();
-
-            services.AddAutoMapper(typeof(Startup));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

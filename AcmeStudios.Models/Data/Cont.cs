@@ -1,6 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AcmeStudios.Models.Domain.StudioItems;
+using AcmeStudios.Models.Domain.StudioItemTypes;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace AcemStudios.ApiRefactor.Data
+namespace AcmeStudios.Models.Data
 {
     public class Cont : DbContext
     {
